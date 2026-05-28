@@ -14,8 +14,9 @@ export class TasksService {
 
   findAll(): Promise<Task[]> {
     return this.tasksRepository.find({
+        take: 100,
         order: {
-            createdAt: 'DESC'
+          createdAt: 'DESC'
         }
     });
   }
