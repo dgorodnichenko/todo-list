@@ -1,4 +1,4 @@
-import type { CreateTaskPayload, Task } from "../types/tasksTypes";
+import type { CreateTaskPayload, Task, UpdateTaskParams } from "../types/tasksTypes";
 
 const TASKS_URL = import.meta.env.VITE_TASKS_URL;
 
@@ -36,4 +36,23 @@ export async function deleteTask(id: string): Promise<void> {
   if (!response.ok) {
     throw new Error('Failed to delete task');
   }
+}
+
+export async function updateTask({
+  id,
+  payload,
+}: UpdateTaskParams): Promise<Task> {
+  const response = await fetch(`${TASKS_URL}/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to update task');
+  }
+
+  return response.json();
 }

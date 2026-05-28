@@ -10,3 +10,10 @@ export type CreateTaskPayload = {
   title: string;
   description: string;
 };
+
+export type UpdateTaskPayload = Partial<CreateTaskPayload>;
+
+export type UpdateTaskParams = {
+  id: string;
+  payload: UpdateTaskPayload;
+};

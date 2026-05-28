@@ -1,0 +1,51 @@
+.task-item__edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task-item__input,
+.task-item__textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.task-item__textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.task-item__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.task-item__save-button,
+.task-item__cancel-button {
+  width: fit-content;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.task-item__save-button {
+  background-color: #2563eb;
+}
+
+.task-item__cancel-button {
+  background-color: #6b7280;
+}
+
+.task-item__save-button:disabled,
+.task-item__cancel-button:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.task-item__error {
+  margin: 0;
+  color: #b91c1c;
+}

@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createTask, deleteTask, getTasks } from "../api/tasksApi";
+import { createTask, deleteTask, getTasks, updateTask } from "../api/tasksApi";
 import { TaskForm } from "../components/TaskForm";
 import { TaskItem } from "../components/TaskItem";
 import './TasksPage.css';
@@ -30,6 +30,13 @@ export function TasksPage() {
     },
   });
 
+  const updateTaskMutation = useMutation({
+    mutationFn: updateTask,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['tasks'] });
+    },
+  });
+
   if (isLoading) {
     return <p>Loading tasks...</p>;
   }
@@ -48,6 +55,7 @@ export function TasksPage() {
       />
       {createTaskMutation.isError && <p className="tasks-page__error">Failed to create task</p>}
       {deleteTaskMutation.isError && <p className="tasks-page__error">Failed to delete task</p>}
+      {updateTaskMutation.isError && <p className="tasks-page__error">Failed to update task</p>}
 
       {tasks.length === 0 ? (
         <p className="tasks-page__message">No tasks yet.</p>
@@ -61,7 +69,17 @@ export function TasksPage() {
                 deleteTaskMutation.isPending &&
                 deleteTaskMutation.variables === task.id
               }
+              isUpdating={
+                updateTaskMutation.isPending &&
+                updateTaskMutation.variables?.id === task.id
+              }
               onDelete={deleteTaskMutation.mutate}
+              onUpdate={(id, payload) =>
+                updateTaskMutation.mutate({
+                  id,
+                  payload,
+                })
+              }
             />
           ))}
         </ul>
