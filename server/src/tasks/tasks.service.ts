@@ -17,8 +17,8 @@ export class TasksService {
 
   create(createTaskDto: CreateTaskDto): Promise<Task> {
     const task = this.tasksRepository.create({
-        title: createTaskDto.title,
-        description: createTaskDto.description
+      title: createTaskDto.title,
+      description: createTaskDto.description
     });
 
     return this.tasksRepository.save(task);
