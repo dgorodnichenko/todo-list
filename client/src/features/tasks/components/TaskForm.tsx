@@ -12,9 +12,6 @@ type FormErrors = {
   description?: string;
 };
 
-const TITLE_MAX_LENGTH = 160;
-const DESCRIPTION_MAX_LENGTH = 2000;
-
 export function TaskForm({ isSubmitting, onSubmit }: TaskFormProps) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -57,6 +54,7 @@ export function TaskForm({ isSubmitting, onSubmit }: TaskFormProps) {
         type="text"
         placeholder="Add title"
         value={title}
+        maxLength={160}
         onChange={(event) => setTitle(event.target.value)}
       />
       {errors.title && <p className="task-form__error">{errors.title}</p>}
@@ -65,6 +63,7 @@ export function TaskForm({ isSubmitting, onSubmit }: TaskFormProps) {
         className="task-form__textarea"
         placeholder="Add description"
         value={description}
+        maxLength={2000}
         onChange={(event) => setDescription(event.target.value)}
       />
       {errors.description && <p className="task-form__error">{errors.description}</p>}
