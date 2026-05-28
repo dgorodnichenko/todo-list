@@ -3,6 +3,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { getTypeOrmConfig } from './config/typeorm.config';
 import { TasksModule } from './tasks/tasks.module';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -14,9 +16,20 @@ import { TasksModule } from './tasks/tasks.module';
       inject: [ConfigService],
       useFactory: getTypeOrmConfig
     }),
+    ThrottlerModule.forRoot([
+      {
+        ttl: 60_000,
+        limit: 30,
+      },
+    ]),
     TasksModule
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
+    },
+  ],
 })
 export class AppModule {}
