@@ -1,6 +1,6 @@
 import type { CreateTaskPayload, Task } from "../types/tasksTypes";
 
-const TASKS_URL = import.meta.env.TASKS_BASE_URL;
+const TASKS_URL = import.meta.env.VITE_TASKS_URL;
 
 export async function getTasks(): Promise<Task[]> {
   const response = await fetch(TASKS_URL);

@@ -1,9 +1,10 @@
 import './App.css'
+import { TasksPage } from './features/tasks/pages/TaskPage';
 
 function App() {
   return (
     <main>
-      <h1>Todo List</h1>
+      <TasksPage />
     </main>
   );
 }
