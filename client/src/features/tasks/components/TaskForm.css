@@ -35,3 +35,7 @@
   background-color: #9ca3af;
   cursor: not-allowed;
 }
+
+.task-form__error {
+  color: #b91c1c;
+}
