@@ -1,0 +1,29 @@
+.tasks-page {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 0 16px;
+}
+
+.tasks-page__title {
+  margin-bottom: 24px;
+  font-size: 32px;
+}
+
+.tasks-page__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.tasks-page__message {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 0 16px;
+  color: #555;
+}
+
+.tasks-page__error {
+  color: #b91c1c;
+}

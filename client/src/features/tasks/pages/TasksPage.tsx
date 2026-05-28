@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createTask, deleteTask, getTasks } from "../api/tasksApi";
 import { TaskForm } from "../components/TaskForm";
 import { TaskItem } from "../components/TaskItem";
+import './TasksPage.css';
 
 export function TasksPage() {
   const queryClient = useQueryClient();
@@ -38,20 +39,20 @@ export function TasksPage() {
   }
 
   return (
-    <section>
-      <h1>Todo List</h1>
+    <section className="tasks-page">
+      <h1 className="tasks-page__title">Todo List</h1>
 
       <TaskForm
         isSubmitting={createTaskMutation.isPending}
         onSubmit={createTaskMutation.mutate}
       />
-      {createTaskMutation.isError && <p>Failed to create task</p>}
-      {deleteTaskMutation.isError && <p>Failed to delete task</p>}
+      {createTaskMutation.isError && <p className="tasks-page__error">Failed to create task</p>}
+      {deleteTaskMutation.isError && <p className="tasks-page__error">Failed to delete task</p>}
 
       {tasks.length === 0 ? (
-        <p>No tasks yet.</p>
+        <p className="tasks-page__message">No tasks yet.</p>
       ) : (
-        <ul>
+        <ul className="tasks-page__list">
           {tasks.map((task) => (
             <TaskItem
               key={task.id}

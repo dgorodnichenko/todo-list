@@ -1,5 +1,6 @@
 import { useState, type SubmitEvent } from 'react';
 import type { CreateTaskPayload } from '../types/tasksTypes';
+import './TaskForm.css';
 
 type TaskFormProps = {
   isSubmitting: boolean;
@@ -23,8 +24,9 @@ export function TaskForm({ isSubmitting, onSubmit }: TaskFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="task-form" onSubmit={handleSubmit}>
       <input
+        className="task-form__input"
         type="text"
         placeholder="Add title"
         value={title}
@@ -32,12 +34,13 @@ export function TaskForm({ isSubmitting, onSubmit }: TaskFormProps) {
       />
 
       <textarea
+        className="task-form__textarea"
         placeholder="Add description"
         value={description}
         onChange={(event) => setDescription(event.target.value)}
       />
 
-      <button type="submit" disabled={isSubmitting}>
+      <button type="submit" className="task-form__button" disabled={isSubmitting}>
         {isSubmitting ? 'Adding...' : 'Add task'}
       </button>
     </form>

@@ -1,5 +1,5 @@
 import './App.css'
-import { TasksPage } from './features/tasks/pages/TaskPage';
+import { TasksPage } from './features/tasks/pages/TasksPage';
 
 function App() {
   return (
