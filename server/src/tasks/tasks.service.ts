@@ -13,7 +13,11 @@ export class TasksService {
   ) {}
 
   findAll(): Promise<Task[]> {
-    return this.tasksRepository.find();
+    return this.tasksRepository.find({
+        order: {
+            createdAt: 'DESC'
+        }
+    });
   }
 
   create(createTaskDto: CreateTaskDto): Promise<Task> {
