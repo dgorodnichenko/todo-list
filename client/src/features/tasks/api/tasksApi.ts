@@ -29,7 +29,7 @@ export async function createTask(payload: CreateTaskPayload): Promise<Task> {
 }
 
 export async function deleteTask(id: string): Promise<void> {
-  const response = await fetch(`TASKS_URL/${id}`, {
+  const response = await fetch(`${TASKS_URL}/${id}`, {
     method: 'DELETE',
   });
 
